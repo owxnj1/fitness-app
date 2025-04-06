@@ -10,7 +10,19 @@ const routes = [
         path: "/"
     },
     {
-        name: "profile",
+        name: "Exercises",
+        path: "/exercises"
+    },
+    {
+        name: "Calorie Tracking",
+        path: "/calorie-tracking"
+    },
+    {
+        name: "OwNnit AI",
+        path: "/OwNnit-AI"
+    },
+    {
+        name: "Profile",
         path: "/profile"
     },
 ];
@@ -39,7 +51,7 @@ function Navbar() {
     {/* routes * /}
     {/* user button */}
     </div>
-    );
+    );  
 }
 
 export default Navbar

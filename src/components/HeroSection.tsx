@@ -1,6 +1,7 @@
 // Hero section for the home page
 
 import React from 'react';
+import Link from 'next/link';
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/hero-background.jpg")',
+          backgroundImage: 'url("/images/gym.jpeg")',
         }}
       />
 
@@ -26,9 +27,13 @@ const HeroSection = () => {
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
           Exercise, Nutrition and community. Start your journey today.
         </p>
-        <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
+        
+        <Link 
+          href="/login" 
+          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300"
+        >
           Sign Up / Log In
-        </button>
+        </Link>
       </div>
     </div>
   );
