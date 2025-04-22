@@ -12,17 +12,17 @@ function ExercisesPage() {
     {
       type: 'Push workout', 
       where: '/exercises/push',
-      desc: 'chest n shoulders stuff'
+      desc: 'chest and shoulders'
     },
     {
       type: 'Pull workout',
       where: '/exercises/pull', 
-      desc: 'back n biceps work'
+      desc: 'back and biceps'
     },
     {
       type: 'Leg workout', 
       where: '/exercises/legs',
-      desc: 'leg day dont skip it'
+      desc: 'legs and glutes'
     }
   ]
 

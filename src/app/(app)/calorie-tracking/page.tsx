@@ -18,10 +18,10 @@ type Meal = {
 function FoodTracker() {
   // track all the foods
   const [foods, setFoods] = useState<Meal[]>([
-    { name: 'breakfast', calories: 0, time: 'morning time', items: [] },
-    { name: 'lunch stuff', calories: 0, time: 'afternoon', items: [] }, 
-    { name: 'dinner', calories: 0, time: 'evening', items: [] },
-    { name: 'snacks', calories: 0, time: 'throughout the day', items: [] }
+    { name: 'breakfast', calories: 0, time: 'Morning', items: [] },
+    { name: 'lunch', calories: 0, time: 'Afternoon', items: [] }, 
+    { name: 'dinner', calories: 0, time: 'Evening', items: [] },
+    { name: 'snacks', calories: 0, time: 'Throughout the day', items: [] }
   ])
 
   // figure out calories eaten
@@ -56,7 +56,7 @@ function FoodTracker() {
 
         <div className='bg-white rounded p-8 shadow mb-6'>
           <h2 className='text-2xl' style={{marginBottom: '1.5rem'}}>
-            todays foods
+            Todays foods
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

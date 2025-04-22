@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-// all the workout stuff we got
+// all the workouts we got
 const workouts = {
   back: [
     {

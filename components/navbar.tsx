@@ -18,8 +18,8 @@ const routes = [
         path: "/calorie-tracking"
     },
     {
-        name: "OwNnit AI",
-        path: "/OwNnit-AI"
+        name: "Meal Planner",
+        path: "/meal-planner"
     },
     {
         name: "Profile",

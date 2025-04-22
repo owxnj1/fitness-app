@@ -1,11 +1,51 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function ProfilePage() {
   const { data: session, status } = useSession()
   const [isEditing, setIsEditing] = useState(false)
+  const [stats, setStats] = useState({
+    totalWorkouts: 0,
+    completedExercises: 0,
+    workoutStreak: 0
+  })
+
+  // Fetch user stats when component mounts
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/user/stats')
+        const data = await response.json()
+        if (data.success) {
+          setStats({
+            totalWorkouts: data.stats.totalWorkouts,
+            completedExercises: data.stats.completedExercises,
+            workoutStreak: calculateStreak(data.stats.lastWorkoutDate)
+          })
+        }
+      } catch (error) {
+        console.error('Failed to fetch stats:', error)
+      }
+    }
+
+    if (session?.user) {
+      fetchStats()
+    }
+  }, [session])
+
+  // Calculate streak based on last workout date
+  const calculateStreak = (lastWorkoutDate: string | null) => {
+    if (!lastWorkoutDate) return 0
+    
+    const lastWorkout = new Date(lastWorkoutDate)
+    const today = new Date()
+    const diffTime = Math.abs(today.getTime() - lastWorkout.getTime())
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    
+    return diffDays <= 1 ? 1 : 0 // Basic streak calculation
+  }
 
   if (status === 'loading') {
     return (
@@ -78,15 +118,18 @@ export default function ProfilePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="text-sm text-gray-600">Total Workouts</div>
-                <div className="text-2xl font-bold">0</div>
+                <div className="text-2xl font-bold">{stats.totalWorkouts}</div>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="text-sm text-gray-600">Completed Exercises</div>
-                <div className="text-2xl font-bold">0</div>
+                <div className="text-2xl font-bold">{stats.completedExercises}</div>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="text-sm text-gray-600">Workout Streak</div>
-                <div className="text-2xl font-bold">0 days</div>
+                <div className="text-sm text-gray-600">Workout Streak 🔥</div>
+                <div className="text-2xl font-bold flex items-center gap-2">
+                  {stats.workoutStreak} days
+                  <span className="animate-pulse text-2xl">🔥</span>
+                </div>
               </div>
             </div>
           </div>
